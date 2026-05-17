@@ -78,52 +78,118 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 30px;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+    transition: background-color 0.3s ease;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     color: var(--text-color);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    z-index: 100;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: var(--glass-shadow);
+    gap: 1rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--social-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--contact-link);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .theme-toggle:hover {
-    transform: scale(1.1);
-    background: var(--card-hover-bg);
+    color: var(--contact-link);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--contact-link);
+}
+
+/* Hero section */
+.hero {
+    padding: 8rem 0 5rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--social-color);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 main.container {
     max-width: 1600px;
     margin: 0 auto;
     padding: 2rem;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-header {
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-}
-
-.page-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--accent);
-    letter-spacing: -0.05em;
 }
 
 .grid-layout {
@@ -477,21 +543,57 @@ footer {
     }
 }
 
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--glass-bg);
+        border-bottom: 1px solid var(--glass-border);
+        padding: 2rem 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        background: transparent;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hero {
+        padding: 6rem 0 3rem;
+    }
+}
+
 @media (max-width: 600px) {
     .grid-layout {
         grid-template-columns: 1fr;
     }
-    .page-title {
-        font-size: 2.2rem;
+    
+    .hero h1 {
+        font-size: 2.5rem;
     }
+
     main.container {
         padding: 1rem;
-    }
-    .theme-toggle {
-        top: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
     }
 }
